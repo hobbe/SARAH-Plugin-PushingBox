@@ -1,24 +1,39 @@
-exports.action = function(data, callback, config){
+/*
+ * PushingBox plugin for S.A.R.A.H.
+ * https://github.com/hobbe/SARAH-Plugin-PushingBox
+ *
+ * Licensed under DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ */
 
-  // Retrieve config
-  config = config.modules.pushingbox;
-	if (!config.deviceid){
-		console.log("Missing PushingBox config");
-    return;
-  }
+exports.action = function(data, callback, configuration, SARAH) {
 
-  // Callback with TTS
-  if (!data.quiet) {
-		callback({});
+	// Retrieve configuration
+	var config = configuration.modules.pushingbox;
+	if (!config.deviceid) {
+		console.log("Invalid PushingBox configuration: missing device ID");
+		callback({ 'tts': 'Vous devez configurer le plugin PushingBox avec votre identifiant de scénario' });
+		return;
 	}
 
-	var url = 'http://api.pushingbox.com/pushingbox?devid=' + config.deviceid + '&message=' + data.tts;
+	var url = 'http://api.pushingbox.com/pushingbox?devid=' + config.deviceid
+	        + '&message=' + encodeURIComponent(data.tts);
 
 	var http = require('http');
+
 	http.get(url, function(res) {
 		console.log("PushingBox response: " + res.statusCode);
-	}).on('error', function(e) {
-		console.log("PushingBox error: " + e.message);
+		if (data.quiet) {
+			callback({});
+		} else {
+			callback({ 'tts': data.tts + '. Le message a été envoyé sur PushingBox.' });
+		}
+	}).on('error', function(err) {
+		console.log("PushingBox error: " + err.message);
+		if (data.quiet) {
+			callback({});
+		} else {
+			callback({ 'tts': data.tts + ". Attention, le message n'a pas été envoyé sur PushingBox." });
+		}
 	});
 
-}
+};
