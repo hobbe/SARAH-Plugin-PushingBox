@@ -1,15 +1,16 @@
 # SARAH-Plugin-PushingBox
 
-## Description
-
 Plugin [PushingBox](http://www.pushingbox.com) pour [S.A.R.A.H.](http://encausse.net/s-a-r-a-h).
 
-This plugin is an add-on for the framework [S.A.R.A.H.](http://encausse.net/s-a-r-a-h),
-a Home Automation project.
+## Description
+
+[PushingBox](http://www.pushingbox.com) plugin for [S.A.R.A.H.](http://encausse.net/s-a-r-a-h).
+
+This plugin is an add-on for the [S.A.R.A.H.](http://encausse.net/s-a-r-a-h) framework, a Home Automation project.
 
 ## Quick Start
 
-Download the plugin from SARAH's AppStore and follow online plugin's documentation.
+Download the plugin from SARAH AppStore and follow the plugin's online documentation.
 
 ## License
 

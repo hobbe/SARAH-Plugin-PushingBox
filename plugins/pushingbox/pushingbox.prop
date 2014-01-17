@@ -2,7 +2,7 @@
   "modules" : { 
     "pushingbox":     {
       "description": "Envoie des commandes PushingBox",
-      "version"    : "0.9",
+      "version"    : "1.0",
       "deviceid"   : "v0123456789ABCDE"
     }
   }
